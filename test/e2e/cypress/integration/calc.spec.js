@@ -24,11 +24,19 @@ context('Calc', () => {
     cy.screenshot()
   })
 
-  it.skip('can click multiply', () => {
+  it('can click multiply', () => {
     cy.get('#in-op1').clear().type('2')
     cy.get('#in-op2').clear().type('3')
     cy.get('#button-multiply').click()
     cy.get('#result-area').should('have.text', "Result: 6")
+    cy.screenshot()
+  })
+
+  it('can click divide', () => {
+    cy.get('#in-op1').clear().type('10')
+    cy.get('#in-op2').clear().type('2')
+    cy.get('#button-divide').click()
+    cy.get('#result-area').should('have.text', "Result: 5")
     cy.screenshot()
   })
 

@@ -40,6 +40,11 @@
         <div>
           <button id="button-add" v-on:click="add()">+</button>
           <button id="button-substract" v-on:click="substract()">-</button>
+          <button id="button-multiply" v-on:click="multiply()">*</button>
+          <button id="button-divide" v-on:click="divide()">/</button>
+          <button id="button-power" v-on:click="power()">^</button>
+          <button id="button-sqrt" v-on:click="sqrt()">sqrt</button>
+          <button id="button-log10" v-on:click="log10()">log10</button>
         </div>
         <div id="result-area">Result: {{ result  }}</div>
         <div>
@@ -67,8 +72,23 @@
           substract: function() {
             this.apiCall('substract', this.op1, this.op2);
           },
+          multiply: function() {
+            this.apiCall('multiply', this.op1, this.op2);
+          },
+          divide: function() {
+            this.apiCall('divide', this.op1, this.op2);
+          },
+          power: function() {
+            this.apiCall('power', this.op1, this.op2);
+          },
+          sqrt: function() {
+            this.apiCall('sqrt', this.op1);
+          },
+          log10: function() {
+            this.apiCall('log10', this.op1);
+          },
           apiCall: function(func, op1, op2) {
-            var url = `${baseUrl}/calc/${func}/${op1}/${op2}`;
+            var url = !!op2 ? `${baseUrl}/calc/${func}/${op1}/${op2}` : `${baseUrl}/calc/${func}/${op1}`;
             axios
               .get(url)
               .then(response => {
