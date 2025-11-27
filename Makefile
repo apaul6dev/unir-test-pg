@@ -7,7 +7,7 @@ run:
 	docker run --rm --volume `pwd`:/opt/calc --env PYTHONPATH=/opt/calc -w /opt/calc calculator-app:latest python -B app/calc.py
 
 server:
-	docker run --rm --volume `pwd`:/opt/calc --name apiserver --network api-net --network-alias apiserver --env PYTHONPATH=/opt/calc --env FLASK_APP=app/api.py -p 5050:5050 -w /opt/calc calculator-app:latest flask run --host=0.0.0.0 --port=5050
+	docker run -d --rm --volume `pwd`:/opt/calc --name apiserver --network api-net --network-alias apiserver --env PYTHONPATH=/opt/calc --env FLASK_APP=app/api.py -p 5050:5050 -w /opt/calc calculator-app:latest flask run --host=0.0.0.0 --port=5050
 
 interactive:
 	docker run -ti --rm --volume `pwd`:/opt/calc --env PYTHONPATH=/opt/calc  -w /opt/calc calculator-app:latest bash
